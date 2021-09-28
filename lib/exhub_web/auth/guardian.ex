@@ -12,10 +12,9 @@ defmodule ExhubWeb.Auth.Guardian do
 
   def resource_from_claims(%{"sub" => id}) do
     case UserGet.get_user(id) do
-     nil -> {:error, "cannot find user"}
-     user -> {:ok, user}
+      nil -> {:error, "cannot find user"}
+      user -> {:ok, user}
     end
-
   end
 
   def authenticate(%{"email" => email, "password" => password}) do

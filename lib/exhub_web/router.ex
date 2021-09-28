@@ -10,11 +10,11 @@ defmodule ExhubWeb.Router do
     pipe_through ExhubWeb.Auth.Pipeline
 
     resources "/users", UserController, except: [:new, :edit, :create]
+    get "/repos/:username", ReposController, :index
   end
 
   scope "/api", ExhubWeb do
     pipe_through :api
-
 
     post "/users", UserController, :create
     post "/auth", UserController, :auth

@@ -21,13 +21,11 @@ defmodule ExhubWeb.UserController do
     end
   end
 
-  def auth(conn, params) do\
+  def auth(conn, params) do
     with {:ok, token} <- Guardian.authenticate(params) do
       conn
       |> put_status(:ok)
       |> render("auth.json", token: token)
-    else
-      error -> IO.inspect(error)
     end
   end
 
