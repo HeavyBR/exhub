@@ -54,6 +54,8 @@ defmodule Exhub.MixProject do
       {:ex_machina, "~> 2.7.0"},
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.17"},
+      {:guardian, "~> 2.0"},
+      {:pbkdf2_elixir, "~> 1.4"},
       {:bypass, "~> 2.1", only: :test},
       {:mox, "~> 1.0", only: :test},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false}

@@ -7,6 +7,17 @@ defmodule ExhubWeb.Router do
 
   scope "/api", ExhubWeb do
     pipe_through :api
+    pipe_through ExhubWeb.Auth.Pipeline
+
+    resources "/users", UserController, except: [:new, :edit, :create]
+  end
+
+  scope "/api", ExhubWeb do
+    pipe_through :api
+
+
+    post "/users", UserController, :create
+    post "/auth", UserController, :auth
   end
 
   # Enables LiveDashboard only for development

@@ -10,6 +10,10 @@ use Mix.Config
 config :exhub,
   ecto_repos: [Exhub.Repo]
 
+config :exhub, Exhub.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :exhub, ExhubWeb.Endpoint,
   url: [host: "localhost"],
@@ -29,3 +33,13 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+
+# Guardian
+config :exhub, ExhubWeb.Auth.Guardian,
+  issuer: "exhub",
+  secret_key: "LO5sTXJAS6b2TK73cwArRznWE0T0BMtqWsQozPvYVxhOBnRsK/dEy0hyiTe73rct"
+
+config :exhub, ExhubWeb.Auth.Pipeline,
+  module: ExhubWeb.Auth.Guardian,
+  error_handler: ExhubWeb.Auth.ErrorHandler
